@@ -18,7 +18,6 @@ describe('API Test', () => {
          expect(response.body.data.avatar).eql(image)
        
           
-
       })
 
       
@@ -27,16 +26,26 @@ describe('API Test', () => {
 
    it('List All Resources', () => {
 
-    cy.request('https://reqres.in/`api/unknown')
-    
-
+    cy.request('https://reqres.in/api/unknown')
 
     .then((response) => {
+
+      const name = 'cerulean';
+      const id = 1
+      const year = 2000;
+      const color = '#98B2D1'
+      const pantone_value = '15-4020';
+      
  
        expect(response.status).to.eq(200)
        expect(response.body.data.length).to.be.eq(6)
        expect(response.body.total_pages).eql(2)
-       expect(response.body.page).eql(2)
+       expect(response.body.page).eql(1)
+       expect(response.body.data[0].name).eql(name)
+       expect(response.body.data[0].year).eql(year)
+       expect(response.body.data[0].color).eql(color)
+       expect(response.body.data[0].id).eq(id)
+       expect(response.body.data[0].pantone_value).eql(pantone_value)
        
       
          
@@ -73,7 +82,7 @@ describe('API Test', () => {
       })
 
 
-      it.only('Get All Users', () => {
+      it('Get All Users', () => {
 
         cy.request('https://reqres.in/api/users?page=2')
   
@@ -97,6 +106,32 @@ describe('API Test', () => {
        
          })
         })
+
+
+        it.only('get delayed response', () => {
+
+          cy.request('https://reqres.in/api/users?delay=3')
+    
+     
+          .then((response) => {
+
+            const email =  'george.bluth@reqres.in'
+            const firstName =  'George'
+            const lastName = 'Bluth'
+            const image =  'https://reqres.in/img/faces/1-image.jpg'
+  
+
+             expect(response.status).to.eq(200)
+             expect(response.body.data.length).to.be.eq(6)
+             expect(response.body.total_pages).eql(2)
+             expect(response.body.data[0].email).eql(email)
+             expect(response.body.data[0].first_name).eql(firstName)
+             expect(response.body.data[0].last_name).eql(lastName)
+             expect(response.body.data[0].avatar).eql(image)
+
+         
+           })
+          })
 
 
 
