@@ -1,7 +1,7 @@
 describe('API Test', () => {
   it('Get Single User', () => {
 
-     cy.request('https://reqres.in/api/users/2')
+     cy.request('GET','https://reqres.in/api/users/2')
      
 
 
@@ -26,7 +26,7 @@ describe('API Test', () => {
 
    it('List All Resources', () => {
 
-    cy.request('https://reqres.in/api/unknown')
+    cy.request('GET','https://reqres.in/api/unknown')
 
     .then((response) => {
 
@@ -56,7 +56,7 @@ describe('API Test', () => {
 
     it('List Single Resource', () => {
 
-      cy.request('https://reqres.in/api/unknown/2')
+      cy.request('GET','https://reqres.in/api/unknown/2')
       
   
   
@@ -84,7 +84,7 @@ describe('API Test', () => {
 
       it('Get All Users', () => {
 
-        cy.request('https://reqres.in/api/users?page=2')
+        cy.request('GET','https://reqres.in/api/users?page=2')
   
    
         .then((response) => {
@@ -108,9 +108,9 @@ describe('API Test', () => {
         })
 
 
-        it.only('get delayed response', () => {
+        it('get delayed response', () => {
 
-          cy.request('https://reqres.in/api/users?delay=3')
+          cy.request('GET','https://reqres.in/api/users?delay=3')
     
      
           .then((response) => {
@@ -134,5 +134,194 @@ describe('API Test', () => {
           })
 
 
+        
+          it('Delete a single user', () => {
 
-})
+            cy.request('DELETE', 'https://reqres.in/api/users/2')
+      
+       
+            .then((response) => {
+  
+    
+               expect(response.status).to.eq(204)
+         
+  
+           
+             })
+            })
+  
+
+
+
+          it.skip('Get a single user', () => {
+
+            cy.request('GET', 'https://reqres.in/api/users/23')
+      
+       
+            .then((response) => {
+  
+    
+               expect(response.status).to.eq(404)
+         
+  
+           
+             })
+            })
+  
+
+                    
+          it('should login a user successfully', () => {
+            cy.request({
+               
+              method: 'POST',
+              url: 'https://reqres.in/api/login',
+              body: 
+              {
+                "email": "eve.holt@reqres.in",
+                "password": "cityslicka",
+              },
+             }).then((response) => {
+
+                  expect(response.status).to.eq(200);
+
+                  //body contains token
+                  expect(response.body.token).to.eq('QpwL5tke4Pnpja7X4');
+            });
+             });
+
+
+  
+
+            it.skip('should not successfully login a user', () => {
+              cy.request({         
+                method: 'POST',
+                url: 'https://reqres.in/api/login',
+                body: 
+                {
+                  "email": "eve.holt@reqres.in",
+                },
+               }).then((response) => {
+  
+                    expect(response.status).to.eq(400);
+  
+              });
+               });
+
+
+               it('should create a user successfully', () => {
+                cy.request({
+                   
+                  method: 'POST',
+                  url: 'https://reqres.in/api/users',
+                  body: 
+                  {
+                    "name": "morpheus",
+                    "job": "leader"
+                }
+
+               
+                 }).then((response) => {
+
+             
+                      expect(response.status).to.eq(201);
+                      expect(response.body.name).to.eq('morpheus');
+                      expect(response.body.job).to.eq('leader');
+              
+                });
+                 });
+
+
+
+
+                 it('should update a user successfully', () => {
+                  cy.request({
+                     
+                    method: 'PUT',
+                    url: 'https://reqres.in/api/users/2',
+                    body: 
+                    {
+                      "name": "morpheus",
+                      "job": "leader"
+                  }
+  
+                 
+                   }).then((response) => {
+  
+               
+                        expect(response.status).to.eq(200);
+                        expect(response.body.name).to.eq('morpheus');
+                        expect(response.body.job).to.eq('leader');
+                
+                  });
+                   });
+  
+
+                   it('patch update request', () => {
+                    cy.request({
+                       
+                      method: 'PATCH',
+                      url: 'https://reqres.in/api/users/2',
+                      body: 
+                      {
+                        "name": "morpheus",
+                        "job": "zion resident"
+                    }
+    
+                   
+                     }).then((response) => {
+    
+                 
+                          expect(response.status).to.eq(200);
+                          expect(response.body.name).to.eq('morpheus');
+                          expect(response.body.job).to.eq('zion resident');
+                  
+                    });
+                     });
+
+
+                     it('Register User', () => {
+                      cy.request({
+                         
+                        method: 'POST',
+                        url: 'https://reqres.in/api/register',
+                        body: 
+                        {
+                          "email": "eve.holt@reqres.in",
+                          "password": "pistol"
+                        }
+      
+                     
+                       }).then((response) => {
+      
+                   
+                            expect(response.status).to.eq(200);
+                            expect(response.body.id).to.eq(4);
+                            expect(response.body.token).to.eq('QpwL5tke4Pnpja7X4');
+                    
+                      });
+                       });
+
+
+                       it.skip('Register user with incorrect data', () => {
+                        cy.request({
+                           
+                          method: 'POST',
+                          url: 'https://reqres.in/api/register',
+                          body: 
+                          {
+                            "email": "eve.holt@reqres.in"
+                          }
+        
+                       
+                         }).then((response) => {
+        
+                     
+                              expect(response.status).to.eq(200);
+                              expect(response.body.id).to.eq(4);
+                              expect(response.body.token).to.eq('QpwL5tke4Pnpja7X4');
+                      
+                        });
+                         });
+  
+  }); 
+  
