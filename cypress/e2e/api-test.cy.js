@@ -206,7 +206,7 @@ describe('API Test', () => {
                });
 
 
-               it.only('should create a user successfully', () => {
+               it('should create a user successfully', () => {
               
                 let user_createdTime;
                 let user;
