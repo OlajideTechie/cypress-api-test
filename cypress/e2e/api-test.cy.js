@@ -206,7 +206,11 @@ describe('API Test', () => {
                });
 
 
-               it('should create a user successfully', () => {
+               it.only('should create a user successfully', () => {
+              
+                let user_createdTime;
+                let user;
+
                 cy.api({
                    
                   method: 'POST',
@@ -219,11 +223,16 @@ describe('API Test', () => {
 
                
                  }).then((response) => {
-
+                     
+                  user_createdTime = response.body.createdAt;
+                  user = response.body.name;
              
                       expect(response.status).to.eq(201);
                       expect(response.body.name).to.eq('morpheus');
                       expect(response.body.job).to.eq('leader');
+                      expect(response.body.createdAt).to.eq(user_createdTime);
+
+                      cy.log(user + '  ' + 'was created at exactly' + user_createdTime )
               
                 });
                  });
