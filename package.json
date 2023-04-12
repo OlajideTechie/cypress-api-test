@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/Olaprog/cypress-api-test#readme",
   "devDependencies": {
-    "cypress": "^10.1.0"
+    "cypress": "^10.11.0"
+  },
+  "dependencies": {
+    "cypress-plugin-api": "^2.11.0"
   }
 }

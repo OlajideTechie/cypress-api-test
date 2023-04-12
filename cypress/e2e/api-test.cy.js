@@ -1,7 +1,8 @@
 describe('API Test', () => {
-  it('Get Single User', () => {
 
-     cy.request('GET','https://reqres.in/api/users/2')
+  it('Get Single User', { env: { snapshotOnly: true } }, () => {
+
+     cy.api('GET','https://reqres.in/api/users/2')
      
 
 
@@ -26,7 +27,7 @@ describe('API Test', () => {
 
    it('List All Resources', () => {
 
-    cy.request('GET','https://reqres.in/api/unknown')
+    cy.api('GET','https://reqres.in/api/unknown')
 
     .then((response) => {
 
@@ -56,7 +57,7 @@ describe('API Test', () => {
 
     it('List Single Resource', () => {
 
-      cy.request('GET','https://reqres.in/api/unknown/2')
+      cy.api('GET','https://reqres.in/api/unknown/2')
       
   
   
@@ -84,7 +85,7 @@ describe('API Test', () => {
 
       it('Get All Users', () => {
 
-        cy.request('GET','https://reqres.in/api/users?page=2')
+        cy.api('GET','https://reqres.in/api/users?page=2')
   
    
         .then((response) => {
@@ -110,7 +111,7 @@ describe('API Test', () => {
 
         it('get delayed response', () => {
 
-          cy.request('GET','https://reqres.in/api/users?delay=3')
+          cy.api('GET','https://reqres.in/api/users?delay=3')
     
      
           .then((response) => {
@@ -137,7 +138,7 @@ describe('API Test', () => {
         
           it('Delete a single user', () => {
 
-            cy.request('DELETE', 'https://reqres.in/api/users/2')
+            cy.api('DELETE', 'https://reqres.in/api/users/2')
       
        
             .then((response) => {
@@ -151,11 +152,9 @@ describe('API Test', () => {
             })
   
 
-
-
           it.skip('Get a single user', () => {
 
-            cy.request('GET', 'https://reqres.in/api/users/23')
+            cy.api('GET', 'https://reqres.in/api/users/23')
       
        
             .then((response) => {
@@ -171,7 +170,7 @@ describe('API Test', () => {
 
                     
           it('should login a user successfully', () => {
-            cy.request({
+            cy.api({
                
               method: 'POST',
               url: 'https://reqres.in/api/login',
@@ -193,7 +192,7 @@ describe('API Test', () => {
   
 
             it.skip('should not successfully login a user', () => {
-              cy.request({         
+              cy.api({         
                 method: 'POST',
                 url: 'https://reqres.in/api/login',
                 body: 
@@ -209,7 +208,7 @@ describe('API Test', () => {
 
 
                it('should create a user successfully', () => {
-                cy.request({
+                cy.api({
                    
                   method: 'POST',
                   url: 'https://reqres.in/api/users',
@@ -234,7 +233,7 @@ describe('API Test', () => {
 
 
                  it('should update a user successfully', () => {
-                  cy.request({
+                  cy.api({
                      
                     method: 'PUT',
                     url: 'https://reqres.in/api/users/2',
@@ -257,7 +256,7 @@ describe('API Test', () => {
   
 
                    it('patch update request', () => {
-                    cy.request({
+                    cy.api({
                        
                       method: 'PATCH',
                       url: 'https://reqres.in/api/users/2',
@@ -280,7 +279,7 @@ describe('API Test', () => {
 
 
                      it('Register User', () => {
-                      cy.request({
+                      cy.api({
                          
                         method: 'POST',
                         url: 'https://reqres.in/api/register',
@@ -303,7 +302,7 @@ describe('API Test', () => {
 
 
                        it.skip('Register user with incorrect data', () => {
-                        cy.request({
+                        cy.api({
                            
                           method: 'POST',
                           url: 'https://reqres.in/api/register',
@@ -324,4 +323,3 @@ describe('API Test', () => {
                          });
   
   }); 
-  
