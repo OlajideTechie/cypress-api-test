@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "api_sample_test": "npx cypress run --spec 'cypress/e2e/api-test.cy.js'",
-    "generate_token": "npx cypress run --spec 'cypress/e2e/customerBalance.cy.js'"
+    "generate_token": "npx cypress run --spec 'cypress/e2e/customerBalance.cy.js'",
+    "run-api-test": "npx cypress run api_sample_test && generate_token"
   },
   "repository": {
     "type": "git",
