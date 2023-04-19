@@ -232,7 +232,7 @@ describe('API Test', () => {
                       expect(response.body.job).to.eq('leader');
                       expect(response.body.createdAt).to.eq(user_createdTime);
 
-                      cy.log(user + '  ' + 'was created at exactly' + user_createdTime )
+                      //cy.log(user + '  ' + 'was created at exactly' + user_createdTime )
               
                 });
                  });

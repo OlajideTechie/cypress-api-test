@@ -20,5 +20,5 @@ jobs:
       - name: Run Cypress tests
         uses: cypress-io/github-action@v4
         with:
-         command: npm run run-api-test 
+         command: npm run regression-test 
         continue-on-error: true

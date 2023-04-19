@@ -28,7 +28,7 @@ describe('Authentication', () => {
       expect(response.status).equal(200);
       expect(response.body.token_type).equal('BearerToken')
 
-      console.log(response);
+      //console.log(response);
     
     });
 }); 
