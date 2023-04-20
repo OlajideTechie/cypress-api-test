@@ -55,7 +55,7 @@ it('get customer momo balance', () => {
     expect(response.body.statusMessage).equal('Success')
     expect(response.body.data.balance[0].balanceDetail.activeValue).equal(activeValue)
     expect(response.body.transactionId).equal(customer_tranx_id)
-    expect(response.body.sequenceNo).equal(transaction_sequence)
+    expect(response.body.sequenceNo).equal(transaction_sequence_id)
 
    })
 
