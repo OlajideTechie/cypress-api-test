@@ -20,7 +20,7 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
          command: npm run regression-test 
-         continue-on-error: true
+         
 
       - name: Test Artifacts
         uses: actions/checkout@v2
@@ -37,4 +37,4 @@ jobs:
          name: cypress-videos
          path: ./cypress/videos
 
-     
+     continue-on-error: true
