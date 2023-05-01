@@ -20,11 +20,13 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
          command: npm run regression-test 
+         continue-on-error: true
 
       - name: Test Artifacts
         uses: actions/checkout@v2
       - uses: cypress-io/github-action@v4
       - uses: actions/upload-artifact@v2
+
         if: failure()
         with:
          name: cypress-screenshots
@@ -35,4 +37,12 @@ jobs:
          name: cypress-videos
          path: ./cypress/videos
 
-        continue-on-error: true
+      - name: Deploy report page
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'    
+
+     
