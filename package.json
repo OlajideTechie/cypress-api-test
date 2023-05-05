@@ -6,7 +6,8 @@
   "scripts": {
     "api_sample_test": "npx cypress run --spec 'cypress/e2e/api-test.cy.js'",
     "generate_token": "npx cypress run --spec 'cypress/e2e/customerBalance.cy.js'",
-    "regression-test": "npm run api_sample_test && npm run generate_token"
+    "customer-kyc": "npx cypress run --spec 'cypress/e2e/customerKyc.cy.js'",
+    "regression-test": "npm run api_sample_test && npm run generate_token && npm run customer-kyc"
   },
   "repository": {
     "type": "git",
