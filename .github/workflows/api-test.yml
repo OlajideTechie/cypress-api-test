@@ -23,6 +23,7 @@ jobs:
          
 
       - name: Test Artifacts
+        uses: actions/checkout@v2
       - uses: cypress-io/github-action@v4
       - uses: actions/upload-artifact@v2
 
@@ -36,4 +37,4 @@ jobs:
          name: cypress-videos
          path: ./cypress/videos
      
-    continue-on-error: true
+     continue-on-error: true
