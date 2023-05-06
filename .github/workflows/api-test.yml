@@ -10,28 +10,33 @@ on:
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
-    
-    container: cypress/browsers:node14.16.0-chrome89-ff86
+
+    strategy:
+      matrix:
+        node: [16, 18, 19, 20]
+    name: E2E on Node v${{ matrix.node }}
     steps:
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+      - run: node -v
+
       - name: Checkout
         uses: actions/checkout@v3
            
       - name: Run Cypress tests
         uses: cypress-io/github-action@v5
-        with:
-         command: npx cypress run 
          
-
       - name: Test Artifacts
-        uses: actions/checkout@v2
-      - uses: cypress-io/github-action@v4
-      - uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
 
         if: failure()
         with:
          name: cypress-screenshots
          path: ./cypress/screenshots
-      - uses: actions/upload-artifact@v2
+
+      - uses: actions/upload-artifact@v3
         if: always()
         with:
          name: cypress-videos
