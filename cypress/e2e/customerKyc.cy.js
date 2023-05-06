@@ -12,7 +12,7 @@ describe('Authentication', () => {
 it('get customer kyc details', () => {
  cy.api ({
  method: 'GET',
- url: 'https://preprod.api.mtn.com/v1/customers/237675889923/kyc?endDate=20220901&startDate=20000801&targetSystem=eva' ,
+ url: __ENV.URL ,
  headers: {
     accept: '*/*',
     'x-api-key': __ENV.KEY,
