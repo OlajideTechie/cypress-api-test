@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-import { __ENV } from "../Env/cypress.env.cy";
+import { __ENV } from "./Env/cypress.env.cy";
 
 let customer_id;
 let firstName;
