@@ -1,6 +1,6 @@
 ## How to run test
 
-* Clone this repo to your local machine by using the 
+* Clone this repo to your local machine by using the following snippet
 
 **```git clone <repository> command```**
 
