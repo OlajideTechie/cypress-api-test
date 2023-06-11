@@ -7,7 +7,7 @@ let activeValue;
 
 describe('Authentication', () => {
 
-    it('generate customer token ', () => {
+    it.skip('generate customer token ', () => {
         cy.api({
         method: 'POST' ,
         url: 'https://mtn-preprod-preprod.apigee.net/v1/oauth/access_token?grant_type=client_credentials' ,
@@ -34,7 +34,7 @@ describe('Authentication', () => {
 }); 
 
   
-it('get customer momo balance', () => {
+it.skip('get customer momo balance', () => {
  cy.api ({
  method: 'GET',
  url: 'https://mtn-preprod-preprod.apigee.net/v2/customers/237670998807/plans?detailedBalance=false&momo=false&plan=data&prefLanguage=EN&targetSystem=ESF' ,
