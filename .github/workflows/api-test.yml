@@ -41,11 +41,11 @@ jobs:
         with:
          name: cypress-videos
          path: ./cypress/videos
-
+         
+      - uses: actions/upload-artifact@master
       - if: always()
-        uses: actions/upload-artifact@master
         with:
           name: test-report.html
-          path: ./cypress/videos/index.html
+          path: ./cypress/downloads
 
     continue-on-error: true
