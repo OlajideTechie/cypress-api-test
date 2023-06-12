@@ -41,16 +41,11 @@ jobs:
         with:
          name: cypress-videos
          path: ./cypress/videos
-         
-         #Create a Directory 
-      - name: Create folder
-        run: |
-          mkdir -p ./cypress/cypress-report
 
       - if: always()
         uses: actions/upload-artifact@master
         with:
           name: test-report.html
-          path: .cypress/cypress-report/index.html
+          path: ./cypress/videos/index.html
 
     continue-on-error: true
