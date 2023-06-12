@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node: [16, 18, 19, 20]
+        node: [16, 18, 20]
     name: E2E on Node v${{ matrix.node }}
     steps:
       - name: Setup Node
@@ -41,5 +41,11 @@ jobs:
         with:
          name: cypress-videos
          path: ./cypress/videos
+         
+      - if: always()
+        uses: actions/upload-artifact@master
+        with:
+          name: test-report.html
+          path: ./cypress-report/index.html
 
     continue-on-error: true
