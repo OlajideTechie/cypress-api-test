@@ -43,7 +43,7 @@ jobs:
          path: ./cypress/videos
          
       - uses: actions/upload-artifact@master
-      - if: always()
+        if: always()
         with:
           name: test-report.html
           path: ./cypress/downloads
