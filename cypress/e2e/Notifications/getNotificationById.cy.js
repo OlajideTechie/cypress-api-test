@@ -9,8 +9,17 @@ let targetSystem;
 let statusCode
 let code;
 
-describe('Authentication', () => {
-    
+describe ( 
+  
+  'Authentication', 
+{
+  retries: {
+    runMode: 1,
+    //openMode: 1,
+  },
+},
+() => {
+  
 it('get notification by valid id', () => {
  cy.api ({
  method: 'GET',
@@ -61,8 +70,6 @@ it('get notification by valid id', () => {
    })
   });
 
-
-   
 });
 
 

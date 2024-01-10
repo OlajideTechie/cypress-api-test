@@ -10,6 +10,7 @@ let DOB;
 describe('Authentication', () => {
     
 it('get customer kyc details', () => {
+
  cy.api ({
  method: 'GET',
  url: __ENV.URL ,
@@ -49,7 +50,34 @@ it('get customer kyc details', () => {
 
 });
 
+
+// `it` test block with custom configuration
+it('Register User', () => {
+  cy.api({
+     
+    method: 'POST',
+    url: 'https://reqres.in/api/register',
+    body: 
+    {
+      "email": "eve.holt@reqres.in",
+      "password": "pistol"
+    }
+
+ 
+   }).then((response) => {
+
+
+        expect(response.status).to.eq(200);
+        expect(response.body.id).to.eq(4);
+        expect(response.body.token).to.eq('QpwL5tke4Pnpja7X4');
+
+  });
+   });
+
+
 });
+
+
 
 
 
