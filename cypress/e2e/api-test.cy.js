@@ -151,7 +151,7 @@ describe('API Test', () => {
             })
   
 
-          it.skip('Get a single user', () => {
+          it('Get a single user', () => {
 
             cy.api('GET', 'https://reqres.in/api/users/23')
       
@@ -190,7 +190,7 @@ describe('API Test', () => {
 
   
 
-            it.skip('should not successfully login a user', () => {
+            it('should not successfully login a user', () => {
               cy.api({         
                 method: 'POST',
                 url: 'https://reqres.in/api/login',
@@ -309,7 +309,7 @@ describe('API Test', () => {
                        });
 
 
-                       it.skip('Register user with incorrect data', () => {
+                       it('Register user with incorrect data', () => {
                         cy.api({
                            
                           method: 'POST',
